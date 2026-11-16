@@ -6,12 +6,16 @@ let package = Package(
     platforms: [.iOS("12.0")],
     products: [.library(name: "applovin-max", targets: ["applovin_max"])],
     dependencies: [
+        .package(name: "FlutterFramework", path: "../FlutterFramework"),
         .package(url: "https://github.com/AppLovin/AppLovin-MAX-Swift-Package", exact: "13.6.3")
     ],
     targets: [
         .target(
             name: "applovin_max",
-            dependencies: [.product(name: "AppLovinSDK", package: "AppLovin-MAX-Swift-Package")],
+            dependencies: [
+                .product(name: "FlutterFramework", package: "FlutterFramework"),
+                .product(name: "AppLovinSDK", package: "AppLovin-MAX-Swift-Package")
+            ],
             path: "Sources/applovin_max",
             publicHeadersPath: ".",
             cSettings: [.headerSearchPath("."), .define("DEFINES_MODULE")]
